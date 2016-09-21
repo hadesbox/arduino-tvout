@@ -27,7 +27,7 @@ unsigned char cube2d[8][2];
 
 void setup() {
   TV.begin(NTSC|OVERLAY,120,96);
-  TV.select_font(font6x8);
+  TV.selectFont(font6x8);
   intro();
   TV.println(F("I am the TVout\nlibrary running on a freeduino\n"));
   TV.delay(2500);
@@ -43,18 +43,20 @@ void setup() {
 
   //fonts
   TV.clear_screen();
-  TV.println(0,0,F("Multiple fonts:"));
-  TV.select_font(font4x6);
+  TV.setCursor(0,0);
+  TV.println(F("Multiple fonts:"));
+  TV.selectFont(font4x6);
   TV.println(F("4x6 font FONT"));
-  TV.select_font(font6x8);
+  TV.selectFont(font6x8);
   TV.println(F("6x8 font FONT"));
-  TV.select_font(font8x8);
+  TV.selectFont(font8x8);
   TV.println(F("8x8 font FONT"));
-  TV.select_font(font6x8);
+  TV.selectFont(font6x8);
   TV.delay(2000);
 
   TV.clear_screen();
-  TV.print(9,44,F("Draw Basic Shapes"));
+  TV.setCursor(9,44);
+  TV.print(F("Draw Basic Shapes"));
   TV.delay(2000);
 
   //circles
@@ -79,8 +81,10 @@ void setup() {
 
   //random cube forever.
   TV.clear_screen();
-  TV.print(16,40,F("Random Cube"));
-  TV.print(28,48,F("Rotation"));
+  TV.setCursor(16,40);
+  TV.print(F("Random Cube"));
+  TV.setCursor(28,48);
+  TV.print(F("Rotation"));
   TV.delay(2000);
 
   randomSeed(analogRead(0));

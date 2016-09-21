@@ -2,6 +2,6 @@
 #define FONT8X8EXT_H
 
 #include <avr/pgmspace.h>
-extern const unsigned char font8x8ext[];
+extern const uint8_t font8x8ext[];
 
 #endif

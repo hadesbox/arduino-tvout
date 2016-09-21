@@ -1,7 +1,7 @@
 #include "font6x8.h"
 
-PROGMEM const unsigned char font6x8[] = {
-	
+const uint8_t font6x8[] PROGMEM = {
+
 	6,8,32,
 	//32 Space
 	0b00000000,
@@ -78,7 +78,7 @@ PROGMEM const unsigned char font6x8[] = {
 	//40 Left Parenthesis (
 	0b00010000,
 	0b00100000,
-	0b01000000,	
+	0b01000000,
 	0b01000000,
 	0b01000000,
 	0b00100000,
@@ -845,7 +845,7 @@ PROGMEM const unsigned char font6x8[] = {
 	0b00010000,
 	0b00010000,
 	0b00001000,
-	0b00010000,	
+	0b00010000,
 	0b00010000,
 	0b00100000,
 	0b00000000,

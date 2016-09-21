@@ -8,7 +8,7 @@ void setup()  {
   x=0;
   y=0;
   TV.begin(NTSC|OVERLAY);	//for devices with only 1k sram(m168) use TV.begin(_NTSC,128,56)
-  TV.select_font(font6x8);
+  TV.selectFont(font6x8);
 }
 
 void loop() {
@@ -16,7 +16,8 @@ void loop() {
   x=0;
   y=0;
   for (char i = 32; i < 127; i++) {
-    TV.print_char(x*6,y*8,i);
+    TV.setCursor(x*6,y*8);
+    TV.print(i);
     x++;
     if (x >= TV.char_line()) {
       y++;

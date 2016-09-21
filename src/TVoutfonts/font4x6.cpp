@@ -1,6 +1,6 @@
 #include "font4x6.h"
 
-PROGMEM const unsigned char font4x6[] = {
+const uint8_t font4x6[] PROGMEM = {
 4,6,32,
 //space
 0b00000000,

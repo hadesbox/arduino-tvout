@@ -3,6 +3,6 @@
 
 #include <avr/pgmspace.h>
 
-extern const unsigned char font6x8[];
+extern const uint8_t font6x8[];
 
 #endif

@@ -2,5 +2,5 @@
 #ifndef SHEMATIC_H
 #define SHEMATIC_H
 
-extern const unsigned char schematic[];
+extern const uint8_t schematic[];
 #endif

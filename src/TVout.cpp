@@ -657,7 +657,7 @@ void TVout::draw_circle(uint8_t x0, uint8_t y0, uint8_t radius, char c, char fc)
  *		Override the bitmap height. This is mainly used for fonts.
  *		default	=0 (do not override)
 */
-void TVout::bitmap(uint8_t x, uint8_t y, const unsigned char * bmp,
+void TVout::bitmap(uint8_t x, uint8_t y, const uint8_t *bmp,
 				   uint16_t i, uint8_t width, uint8_t lines) {
 
 	uint8_t temp, lshift, rshift, save, xtra;

@@ -36,6 +36,7 @@ application as possible.
 #include <avr/pgmspace.h>
 #include <avr/interrupt.h>
 #include <stdlib.h>
+#include <Print.h>
 
 #include "video_gen.h"
 #include "spec/hardware_setup.h"
@@ -64,7 +65,7 @@ application as possible.
 /*
 TVout.cpp contains a brief expenation of each function.
 */
-class TVout {
+class TVout : public Print {
 public:
 	uint8_t * screen;
 
@@ -98,7 +99,7 @@ public:
 	void draw_column(uint8_t row, uint16_t y0, uint16_t y1, uint8_t c);
 	void draw_rect(uint8_t x0, uint8_t y0, uint8_t w, uint8_t h, char c, char fc = -1);
 	void draw_circle(uint8_t x0, uint8_t y0, uint8_t radius, char c, char fc = -1);
-	void bitmap(uint8_t x, uint8_t y, const unsigned char * bmp, uint16_t i = 0, uint8_t width = 0, uint8_t lines = 0);
+	void bitmap(uint8_t x, uint8_t y, const uint8_t *bmp, uint16_t i = 0, uint8_t width = 0, uint8_t lines = 0);
 
 	//hook setup functions
 	void set_vbi_hook(void (*func)());
@@ -109,69 +110,19 @@ public:
 	void tone(unsigned int frequency);
 	void noTone();
 
-//The following function definitions can be found in TVoutPrint.cpp
-//printing functions
-	void print_char(uint8_t x, uint8_t y, unsigned char c);
-	void set_cursor(uint8_t, uint8_t);
-	void select_font(const unsigned char * f);
+	//printing functions
+	void setCursor(uint8_t, uint8_t);
+	void selectFont(const uint8_t *f);
+	virtual size_t write(uint8_t);
+	using Print::write;
 
-    void write(uint8_t);
-    void write(const char *str);
-	void write(const class __FlashStringHelper *);
-    void write(const uint8_t *buffer, uint8_t size);
-
-    void print(const char[]);
-	void print(const class __FlashStringHelper *);
-    void print(char, int = BYTE);
-    void print(unsigned char, int = BYTE);
-    void print(int, int = DEC);
-    void print(unsigned int, int = DEC);
-    void print(long, int = DEC);
-    void print(unsigned long, int = DEC);
-    void print(double, int = 2);
-
-	void print(uint8_t, uint8_t, const char[]);
-	void print(uint8_t, uint8_t, const class __FlashStringHelper *);
-	void print(uint8_t, uint8_t, char, int = BYTE);
-	void print(uint8_t, uint8_t, unsigned char, int = BYTE);
-	void print(uint8_t, uint8_t, int, int = DEC);
-	void print(uint8_t, uint8_t, unsigned int, int = DEC);
-	void print(uint8_t, uint8_t, long, int = DEC);
-	void print(uint8_t, uint8_t, unsigned long, int = DEC);
-	void print(uint8_t, uint8_t, double, int = 2);
-
-	void println(uint8_t, uint8_t, const char[]);
-	void println(uint8_t, uint8_t, const class __FlashStringHelper *);
-    void println(uint8_t, uint8_t, char, int = BYTE);
-    void println(uint8_t, uint8_t, unsigned char, int = BYTE);
-    void println(uint8_t, uint8_t, int, int = DEC);
-    void println(uint8_t, uint8_t, unsigned int, int = DEC);
-    void println(uint8_t, uint8_t, long, int = DEC);
-    void println(uint8_t, uint8_t, unsigned long, int = DEC);
-    void println(uint8_t, uint8_t, double, int = 2);
-    void println(uint8_t, uint8_t);
-
-    void println(const char[]);
-	void println(const class __FlashStringHelper *);
-    void println(char, int = BYTE);
-    void println(unsigned char, int = BYTE);
-    void println(int, int = DEC);
-    void println(unsigned int, int = DEC);
-    void println(long, int = DEC);
-    void println(unsigned long, int = DEC);
-    void println(double, int = 2);
-    void println(void);
-
-	void printPGM(const char[]);
-	void printPGM(uint8_t, uint8_t, const char[]);
+	size_t printPGM(PGM_P);
 
 private:
-	uint8_t cursor_x,cursor_y;
-	const unsigned char * font;
+	uint8_t cursor_x, cursor_y;
+	const uint8_t *font;
 
-	void inc_txtline();
-    void printNumber(unsigned long, uint8_t);
-    void printFloat(double, uint8_t);
+	void write(uint8_t x, uint8_t y, unsigned char c);
 };
 
 #endif

@@ -2,6 +2,6 @@
 #define FONT4X6_h
 #include <avr/pgmspace.h>
 
-extern const unsigned char font4x6[];
+extern const uint8_t font4x6[];
 
 #endif
